@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="nl.x-services.plugins.NativeCall"
+        version="2.0.1">
+
+  <name>NativeCall</name>
+
+  <description>
+    This plugin allows you to show a NativeCall.
+    A NativeCall is a little non intrusive buttonless popup which automatically disappears.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="www/NativeCall.js" name="NativeCall">
+    <clobbers target="window.plugins.NativeCall" />
+  </js-module>
+
+  <js-module src="test/tests.js" name="tests">
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="NativeCall">
+        <param name="ios-package" value="NativeCall"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/NativeCall+UIView.h"/>
+    <source-file src="src/ios/NativeCall+UIView.m"/>
+    <header-file src="src/ios/NativeCall.h"/>
+    <source-file src="src/ios/NativeCall.m"/>
+
+    <framework src="QuartzCore.framework" />
+  </platform>
+
+  <!-- android -->
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="NativeCall">
+        <param name="android-package" value="nl.xservices.plugins.NativeCall" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/nl/xservices/plugins/NativeCall.java" target-dir="src/nl/xservices/plugins"/>
+  </platform>
+
+</plugin>
